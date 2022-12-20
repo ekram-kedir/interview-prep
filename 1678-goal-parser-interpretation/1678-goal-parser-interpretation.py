@@ -9,4 +9,6 @@ class Solution:
             elif command[i] == "a" and command[i-1] == "(":
                 ans += "al"
         return ans
+   
     
+                
