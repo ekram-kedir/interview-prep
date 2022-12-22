@@ -21,4 +21,3 @@ class Solution:
                     left += 1
                     
         return "".join(map(str,merged))
-            
