@@ -1,30 +1,28 @@
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
         length = len(grid[0])
-        l = []
-        k = []
+        rows = []
+        before = []
+        cols = []
+        count = 0
+        
         for i in range(len(grid)):
             res = ""
             for j in range(length):
-               res += str(grid[i][j]) + "+" 
-            l.append(res[:-1])
-        print(l)
-        
-        r = []
-        n = []
+                res += str(grid[i][j]) + "+" 
+            rows.append(res[:-1])
+
         for i in zip(*grid):
-            r.append(i)
-        print(r)
-        for i in range(len(r)):
-            s = "+".join(map(str,r[i]))
-            n.append(s)
-        print(n)
+            before.append(i)
         
-        
-        count = 0
-        for i in range(len(l)):
-            for j in range(len(n)):
-                if l[i] == n[j]:
+        for i in range(len(before)):
+            num = "+".join(map(str,before[i]))
+            cols.append(num)
+      
+       
+        for i in range(len(rows)):
+            for j in range(len(cols)):
+                if rows[i] == cols[j]:
                     count += 1
                     
         return count
