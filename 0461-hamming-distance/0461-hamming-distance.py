@@ -1,5 +1,11 @@
 class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
-        value = bin(x ^ y)
-        return str(value).count("1")
+        start = x ^ y
+        value = 0
+        
+        while start > 0:
+            value += start & 1
+            start = start >> 1
+            
+        return value
         
