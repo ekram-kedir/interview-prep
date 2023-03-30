@@ -1,10 +1,6 @@
 class Solution:
     def findComplement(self, num: int) -> int:
-        value = bin(num)
-        new = ""
-        for val in range(2,len(value)):
-            if value[val] == "0":
-                new += "1"
-            else:
-                new += "0"
-        return int(new , 2)
+        
+        power = floor(log(num , 2))
+        value = 2 ** power
+        return (2 * value) - num - 1
