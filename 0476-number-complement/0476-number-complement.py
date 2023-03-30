@@ -1,6 +1,7 @@
 class Solution:
     def findComplement(self, num: int) -> int:
         
-        power = floor(log(num , 2))
-        value = 2 ** power
-        return (2 * value) - num - 1
+        start = 1
+        while start <= num:
+            start = start << 1
+        return (start - 1) ^ num
