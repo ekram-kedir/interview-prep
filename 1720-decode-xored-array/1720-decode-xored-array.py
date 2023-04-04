@@ -1,0 +1,8 @@
+class Solution:
+    def decode(self, encoded: List[int], first: int) -> List[int]:
+        answer = [first]
+     
+        for num in range(len(encoded)):
+            answer.append(answer[- 1] ^ encoded[num])
+        return answer
+        
