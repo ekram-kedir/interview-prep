@@ -8,7 +8,7 @@ class Solution:
         
         if node == n - 1:
             self.result.append(path[:])
-            return
+        
         
         for node in graph[node]:
             path.append(node)
