@@ -14,7 +14,7 @@ class Solution:
                 
             self.backtrack(idx + 1 , subsequence , nums)
             subsequence.pop()
-            self.backtrack(idx + 1 , subsequence , nums)
+            # self.backtrack(idx + 1 , subsequence , nums)
             
     def findSubsequences(self, nums: List[int]) -> List[List[int]]:
         self.result = set()
