@@ -11,7 +11,6 @@ class Solution:
             else:
                 if s[start].lower() != s[end].lower():
                     return False
-                    break
                 else:
                        start += 1
                        end -= 1
