@@ -33,7 +33,6 @@ class Solution:
                              visited.add((node[0] + d[0],node[1] + d[1]))
                              queue.append((node[0] + d[0],node[1] + d[1]))
                                 
-        print(visited)
                                 
         return -1
                     
