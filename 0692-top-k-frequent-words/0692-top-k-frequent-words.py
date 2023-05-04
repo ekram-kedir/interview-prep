@@ -1,10 +1,16 @@
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        seen=Counter(words)
-        minheap=[(-see,word) for word,see in seen.items()]
-        heapq.heapify(minheap)
-        ans=[]
-        while k>0:
-            ans.append(heappop(minheap)[1])
-            k-=1
-        return ans
+        
+        answer = []
+        words_dic = Counter(words)
+        words_heap = [(-v,k) for (k , v) in words_dic.items()]
+        
+        heapify(words_heap)
+        count = 0
+        
+        while count < k:
+            
+            answer.append(heappop(words_heap)[1])
+            count += 1
+            
+        return answer
