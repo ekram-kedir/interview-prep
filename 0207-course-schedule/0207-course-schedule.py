@@ -27,8 +27,8 @@ class Solution:
         visited = set()
         callStack = []
         
-        answer = False
         for a in range(numCourses):
-            answer = answer or self.dfs(a , graph , visited , callStack)
-        return not answer
+            if self.dfs(a , graph , visited , callStack):
+                return False
+        return True
         
