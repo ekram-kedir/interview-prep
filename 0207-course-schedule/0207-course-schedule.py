@@ -7,14 +7,14 @@ class Solution:
         if node in callStack:
             return True
         
-        callStack.append(node)
+        callStack.add(node)
         
         for ngh in graph[node]:
             if self.dfs(ngh , graph , visited , callStack):
                 return True
             
         visited.add(node)
-        callStack.pop()
+        callStack.remove(node)
         return False
     
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
@@ -25,7 +25,7 @@ class Solution:
             graph[b].append(a)
             
         visited = set()
-        callStack = []
+        callStack = set()
         
         for a in range(numCourses):
             if self.dfs(a , graph , visited , callStack):
