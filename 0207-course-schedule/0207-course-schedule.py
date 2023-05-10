@@ -1,34 +1,35 @@
 class Solution:
-    def dfs(self , node , graph , visited , callStack):
+    def dfs(self , node , graph , colors):
         
-        if node in visited:
+        if colors[node] == 2:
             return False
         
-        if node in callStack:
+        if colors[node] == 1:
             return True
         
-        callStack.add(node)
+        colors[node] = 1
         
         for ngh in graph[node]:
-            if self.dfs(ngh , graph , visited , callStack):
+            if self.dfs(ngh , graph , colors):
                 return True
             
-        visited.add(node)
-        callStack.remove(node)
+        
+        colors[node] = 2
+        
         return False
     
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         graph = [[] for _ in range(numCourses)]
+        colors = [0 for _ in range(numCourses)]
         
         for a,b in prerequisites:
             graph[b].append(a)
             
-        visited = set()
-        callStack = set()
-        
         for a in range(numCourses):
-            if self.dfs(a , graph , visited , callStack):
+            
+            if self.dfs(a , graph , colors):
                 return False
+            
         return True
         
