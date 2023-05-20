@@ -30,6 +30,6 @@ class Solution:
         for a, b, c in roads:
             self.union(a, b , c)
        
-        return self.rank[self.find(n)]
+        return self.rank[self.find(1)]
         
        
