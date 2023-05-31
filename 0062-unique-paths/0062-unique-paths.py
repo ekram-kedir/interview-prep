@@ -1,17 +1,20 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         
-        @cache
-        def dp(row,col):
-            
-            if row == m - 1 and col == n - 1:
-                return 1
-            if row + 1 < m and col + 1 < n:
-                return dp(row + 1,col) + dp(row , col + 1)
-            if row + 1 < m and col + 1 == n:
-                return dp(row + 1, col)
-            if row + 1 == m and col + 1 < n:
-                return dp( row, col + 1)
-            
-        return dp(0 , 0)
+        result = [[0 for i in range(m)] for j in range(n)]
+        
+        result[0][0] = 1
+        
+        for row in range(n):
+            for col in range(m):
+              
+                if row > 0 and col == 0:
+                    result[row][col] += result[row - 1][col]
+                if row == 0 and col > 0:
+                    result[row][col] += result[row][col - 1]
+                if row > 0 and col > 0:
+                    result[row][col] += result[row - 1][col] + result[row][col - 1]
+                    
+        return result[n - 1][m - 1]
+             
                 
