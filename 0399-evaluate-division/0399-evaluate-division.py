@@ -10,21 +10,21 @@ class Solution:
             graph[des].append((src , (1/ values[index])))
             
         
-        def dfs(start ,end ,cur_dist ,visited):
+        def helper(start ,end ,cur_dist ,visited):
             
-            if start == end:
-                return cur_dist
+            queue = deque([[start, cur_dist]])
             
-            
-            for neigh in graph[start]:
-                cur_node, cur_weight = neigh[0] , neigh[1]
-                if cur_node not in visited:
-                    visited.add(cur_node)
-            
-                    res = dfs(cur_node ,end ,  cur_weight * cur_dist , visited)
-                    if res != -1:
-                        return res
+            while queue:
                 
+                cur_node , cur_weight = queue.popleft()
+                if cur_node == end:
+                    return cur_weight
+                
+                for curr_k, curr_v  in graph[cur_node]:
+                    if curr_k not in visited:
+                        visited.add(curr_k)
+                        queue.append([curr_k , curr_v * cur_weight])  
+                    
             return -1.0
         
         for index,key in enumerate(queries):
@@ -33,7 +33,7 @@ class Solution:
             visited.add(start)
             
             if start in graph:
-                answer[index] = dfs(start , end , 1 , visited)
+                answer[index] = helper(start , end , 1 , visited)
             else:
                 answer[index] = -1.0
         
