@@ -1,11 +1,12 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        answer = []
+        store_the_complement = {}
         
-        for right in range(len(nums)):
-            for left in range(right + 1 , len(nums)):
-                if nums[left] + nums[right] == target:
-                    answer.append(right)
-                    answer.append(left)
-        return answer
+        for index,num in enumerate(nums):
+            complement = target - num
+            if num in store_the_complement:
+                return [store_the_complement[num] , index]
+            
+            store_the_complement[complement] = index
+        print(store_the_complement)
