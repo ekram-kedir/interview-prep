@@ -1,20 +1,17 @@
 class Solution:
     def getKth(self, lo: int, hi: int, k: int) -> int:
         
-        answer = defaultdict(int)
-        for element in range(lo, hi + 1):
-            answer[element] = 0
-            num = element
-            count = 0
-            while element != 1:
-                
-                if element % 2 == 0:
-                    element = element / 2
-                else:
-                    element = element * 3 + 1
-                count += 1
-            answer[num] = count
-        updated = sorted(answer.items(), key = lambda x:x[1])
-        return updated[k - 1][0]
+        @cache
+        def collatz_count(num):
+            if num == 1:
+                return 0
+            elif num % 2 == 0:
+                return 1 + collatz_count(num // 2)
+            else:
+                return 1 + collatz_count(3 * num + 1)
+
+        elements = list(range(lo, hi + 1))
+        elements.sort(key=lambda x: (collatz_count(x), x))
+        return elements[k - 1]
         
                 
