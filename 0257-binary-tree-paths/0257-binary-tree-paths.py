@@ -12,18 +12,15 @@ class Solution:
             
             if not root:
                 return
-            if root.left is None and root.right is None:
+            if not root.left and not root.right:
                 path += str(root.val)
                 answer.append(path)
-                
             dfs(root.left , path + str(root.val) + "->")
             dfs(root.right , path + str(root.val) + "->")
             
         dfs(root , "")
         
         result = []
-        
         for path in answer:
             result.append("".join(path))
-            
         return result
