@@ -1,23 +1,19 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        identify_intervals = []
         
-        for start, end in intervals:
-            identify_intervals.append([start, 0])
-            identify_intervals.append([end, 1])
-        
-        identify_intervals.sort()
-        
-        merged_intervals = []
-        start = 0
-        count = 0
-        
-        for point, value in identify_intervals:
-            if count == 0 and value == 0:
-                start = point
-            count += 1 if value == 0 else -1
+        if not intervals:
+            return []
 
-            if count == 0:
-                merged_intervals.append([start, point])
+        intervals.sort(key=lambda x: x[0])
+        merged_intervals = [intervals[0]]
+
+        for i in range(1, len(intervals)):
+            current_start, current_end = intervals[i]
+            last_start, last_end = merged_intervals[-1]
+
+            if current_start <= last_end:
+                merged_intervals[-1] = [last_start, max(current_end, last_end)]
+            else:
+                merged_intervals.append([current_start, current_end])
 
         return merged_intervals
